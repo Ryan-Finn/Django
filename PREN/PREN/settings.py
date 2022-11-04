@@ -8,6 +8,10 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
+
+02_admin:
+    command: "source /var/app/venv/*/bin/activate && echo \"from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@email.com', 'password')\" | python3 manage.py shell"
+    leader_only: true
 """
 
 import os
