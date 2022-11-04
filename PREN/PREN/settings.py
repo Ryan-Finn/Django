@@ -35,12 +35,15 @@ ALLOWED_HOSTS = ['127.0.0.1', 'PREN-env.eba-vbrtbb5n.us-west-2.elasticbeanstalk.
 # Application definition
 
 INSTALLED_APPS = [
+    'api',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "frontend",
+    "rest_framework"
 ]
 
 MIDDLEWARE = [

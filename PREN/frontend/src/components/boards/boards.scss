@@ -1,0 +1,25 @@
+.btn_self {
+    width: 150px;
+}
+
+.modal_content {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 70%;
+    border: none;
+    background: #32363b;
+    overflow: auto;
+    padding: 20px;
+    outline: none;
+}
+
+.modal_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #272b30;
+}
