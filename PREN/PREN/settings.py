@@ -9,9 +9,15 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 
-02_admin:
-    command: "source /var/app/venv/*/bin/activate && echo \"from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@email.com', 'password')\" | python3 manage.py shell"
-    leader_only: true
+commands:
+    01_admin:
+        command: "source /var/app/venv/*/bin/activate && echo \"from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@email.com', 'password')\" | python3 manage.py shell"
+        leader_only: true
+    02_install_node:
+        command: |
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+            . ~/.nvm/nvm.sh
+            nvm install 16.17.1
 """
 
 import os
@@ -32,9 +38,9 @@ else:
     SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'PREN-env.eba-vbrtbb5n.us-west-2.elasticbeanstalk.com', '54.189.105.94', '52.41.146.116']
+ALLOWED_HOSTS = ['127.0.0.1', 'PREN-env.eba-vbrtbb5n.us-west-2.elasticbeanstalk.com']
 
 # Application definition
 
@@ -65,7 +71,7 @@ ROOT_URLCONF = 'PREN.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'frontend.templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -141,3 +147,6 @@ STATIC_ROOT = 'static'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SECURE_CROSS_ORIGIN_OPENER_POLICY = None
+SESSION_COOKIE_SECURE = False
