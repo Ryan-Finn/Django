@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 
 # Create your models here.
@@ -26,4 +27,37 @@ class BoardInfo(models.Model):
 
 class Company(models.Model):
     name = models.TextField()
-    compId = models.TextField()
+    compId = models.TextField(primary_key=True, default='c-1')
+
+
+class Admin(models.Model):
+    # control_list =
+    # role =
+    user_id = models.TextField(primary_key=True, default='u-1')
+    user = models.TextField()
+    passW = models.TextField()
+    comp_id = models.ForeignKey('Company', on_delete=models.CASCADE)
+
+
+class Room(models.Model):
+    room_id = models.TextField(primary_key=True)
+    room_num = models.IntegerField()
+    room_name = models.IntegerField()
+    location = models.TextField()
+    description = models.CharField(max_length=1000, blank=True)
+
+
+class Event(models.Model):
+    event_id = models.TextField(primary_key=True)
+    title = models.TextField()
+    desc = models.TextField()
+    start = models.DateTimeField(default=datetime.now())
+    end = models.DateTimeField(default=datetime.now())
+
+
+class RoomAttributes(models.Model):
+    occupancy = models.IntegerField()
+    zoom_info = models.TextField()
+    availability = models.BooleanField()
+    req_approval = models.BooleanField(default=False)
+    room_id = models.ForeignKey('Room', on_delete=models.CASCADE)

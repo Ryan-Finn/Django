@@ -13,7 +13,7 @@ export const getBoardInfo = () => dispatch =>{
                 type: GET_BOARDINFO,
                 payload: res.data
             });
-        //catches anny erros and will creat popup messages with them
+        //catches any errors and will creat popup messages with them
         }).catch(err => {
             const errors = {
                 msg: err.response.data,

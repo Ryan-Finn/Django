@@ -7,3 +7,4 @@ export const ADD_BOARDINFO = 'ADD_BOARDINFO';
 export const GET_ERRORS = 'GET_ERRORS';
 export const GET_MESSAGES = 'GET_MESSAGES';
 export const CREATE_MESSAGE = 'CREATE_MESSAGE';
+export const RECIEVE_EVENTS = 'RECIEVE_EVENTS';
