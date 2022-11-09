@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 commands:
     01_admin:
-        command: "source /var/app/venv/*/bin/activate && echo \"from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@email.com', 'password')\" | python3 manage.py shell"
+        command: "source /var/app/venv/*/bin/activate && echo \"from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@email.com', 'password')\" | python3 main.py shell"
         leader_only: true
     02_install_node:
         command: |

@@ -1,22 +1,31 @@
-#!/usr/bin/env python
-"""Django's command-line utility for administrative tasks."""
 import os
-import sys
+import datetime as dt
+import subprocess as sp
 
 
-def main():
-    """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Web.settings')
-    try:
-        from django.core.management import execute_from_command_line
-    except ImportError as exc:
-        raise ImportError(
-            "Couldn't import Django. Are you sure it's installed and "
-            "available on your PYTHONPATH environment variable? Did you "
-            "forget to activate a virtual environment?"
-        ) from exc
-    execute_from_command_line(sys.argv)
+def update(file):
+    file.seek(0)
+    file.write(str(dt.date.today()))
+    file.truncate()
+    print("\nUpdating...")
+    sp.Popen('npm update & npx browserslist@latest --update-db & npm install --save-dev webpack & npm audit fix',
+             shell=True).wait()
 
 
 if __name__ == '__main__':
-    main()
+    if 'RDS_HOSTNAME' not in os.environ:
+        try:
+            with open('last_update.txt', 'r+') as f:
+                if dt.datetime.strptime(f.readline(), '%Y-%m-%d').date() + dt.timedelta(days=30) <= dt.date.today():
+                    update(f)
+        except FileNotFoundError:
+            with open('last_update.txt', 'a') as f:
+                update(f)
+
+        sp.Popen('python main.py migrate --noinput', shell=True).wait()
+        sp.Popen('python main.py collectstatic --noinput', shell=True).wait()
+
+    sp.Popen('npm run dev', shell=True)
+    sp.Popen('python ImageGenerator/ImageGenerator.py', shell=True)
+    sp.Popen('python RequestHandler/RequestHandler.py', shell=True)
+    sp.Popen('python main.py runserver', shell=True).wait()
