@@ -67,7 +67,7 @@ class Calendar extends Component {
                     type='checkbox'
                     checked={this.props.weekendsVisible}
                     onChange={this.props.toggleWeekends}
-                    ></input>
+                    />
                 </div>
                 <div>
                     - Toggle weekends

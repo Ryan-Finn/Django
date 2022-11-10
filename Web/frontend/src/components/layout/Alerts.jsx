@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { withAlert } from 'react-alert';
+// import { withAlert } from 'react-alert';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -38,4 +38,4 @@ const mapStateToProps = state => ({
     message: state.messages
 });
 
-export default connect(mapStateToProps)(withAlert()(Alerts));
+// export default connect(mapStateToProps)(withAlert()(Alerts));

@@ -1,4 +1,4 @@
 /node_modules/
-/PREN/static/admin/
-/PREN/static/rest_framework/
 .env
+last_update.txt
+/Web/static/

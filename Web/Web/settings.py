@@ -32,13 +32,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = config('SECRET_KEY')
+
 # SECURITY WARNING: don't run with debug turned on in production!
-if 'SECRET_KEY' in os.environ:
-    SECRET_KEY = os.environ['SECRET_KEY']
-    DEBUG = False
-else:
-    SECRET_KEY = config('SECRET_KEY')
-    DEBUG = True
+DEBUG = 'RDS_HOSTNAME' not in os.environ
 
 ALLOWED_HOSTS = ['127.0.0.1', 'PREN-env.eba-vbrtbb5n.us-west-2.elasticbeanstalk.com']
 

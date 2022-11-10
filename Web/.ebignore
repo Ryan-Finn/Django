@@ -1,0 +1,6 @@
+/static/
+/node_modules/
+last_update.txt
+deploy.py
+README.md
+.gitignore

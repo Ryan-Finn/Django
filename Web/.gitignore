@@ -1,4 +1,4 @@
 /node_modules/
-/static/admin/
-/static/rest_framework/
 .env
+last_update.txt
+/static/
